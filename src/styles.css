@@ -1,0 +1,85 @@
+/* ═══════════════════════════════════════════════════════════
+   Estilos globales — Prevención Salud
+   Paleta: Rosa/Magenta corporativo + Púrpura + Azul nav
+   Tipografía: Nunito
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Paleta corporativa Prevención Salud */
+  --color-primary:        #E8005A;   /* Rosa/magenta principal */
+  --color-primary-dark:   #B5004A;   /* Rosa oscuro (hover/activo) */
+  --color-primary-light:  #FF1A6E;   /* Rosa claro */
+  --color-primary-faint:  #FFF0F5;   /* Fondo rosa muy suave */
+
+  --color-purple:         #7B0066;   /* Púrpura de decoración */
+  --color-purple-light:   #A0208C;
+
+  --color-nav:            #005BB5;   /* Azul de los links de navegación */
+  --color-nav-hover:      #003F8A;
+
+  --color-white:          #FFFFFF;
+  --color-bg:             #F7F7F9;   /* Gris muy claro para fondos alternos */
+  --color-bg-alt:         #F0F0F4;
+
+  --color-text:           #222222;
+  --color-text-muted:     #666680;
+  --color-text-light:     #9999AA;
+
+  --color-border:         #E0E0EC;
+  --color-border-light:   #EDEDF5;
+
+  --color-success:        #1A8C5B;
+  --color-error:          #C8392B;
+
+  --font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-full: 50px;
+
+  --shadow-sm:  0 2px 8px rgba(232, 0, 90, 0.08);
+  --shadow-md:  0 4px 20px rgba(232, 0, 90, 0.12);
+  --shadow-lg:  0 8px 32px rgba(232, 0, 90, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+p  { margin: 0; }
+a  { color: inherit; }
+button { font-family: inherit; }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-light); }

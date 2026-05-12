@@ -1,0 +1,24 @@
+<section class="planes" id="planes">
+  <div class="planes__container">
+    <div class="planes__header">
+      <span class="planes__eyebrow">Cobertura médica</span>
+      <h2 class="planes__title">Elegí el plan que más te conviene</h2>
+      <p class="planes__subtitle">
+        Todos nuestros planes incluyen acceso a nuestra red médica nacional,
+        guardia 24 hs y atención digital.
+      </p>
+    </div>
+
+    <div class="planes__grid">
+      @for (plan of planes(); track plan.id) {
+        <app-plan-card
+          [plan]="plan"
+          [seleccionado]="planSeleccionadoId() === plan.id"
+          (planSeleccionado)="onPlanSeleccionado($event)"
+        />
+      } @empty {
+        <p class="planes__empty">Cargando planes...</p>
+      }
+    </div>
+  </div>
+</section>

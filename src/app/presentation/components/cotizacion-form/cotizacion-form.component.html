@@ -1,0 +1,204 @@
+<section class="form-section" id="cotizar">
+  <div class="form-section__container">
+
+    <!-- Columna izquierda -->
+    <div class="form-section__left">
+      <span class="form-section__eyebrow">Cotizá sin cargo</span>
+      <h2 class="form-section__title">Completá tus datos y te contactamos</h2>
+      <p class="form-section__subtitle">
+        En menos de 24 horas un asesor te explicará todos los detalles
+        y te ayudará a elegir el plan ideal para vos.
+      </p>
+
+      @if (planSeleccionado()) {
+        <div class="form-section__plan-seleccionado">
+          <span class="form-section__plan-icono">{{ planSeleccionado()!.icono }}</span>
+          <div>
+            <p class="form-section__plan-label">Plan seleccionado</p>
+            <p class="form-section__plan-nombre">{{ planSeleccionado()!.nombre }}</p>
+          </div>
+          <button class="form-section__plan-quitar" (click)="quitarPlan()">✕</button>
+        </div>
+      } @else {
+        <div class="form-section__plan-hint">
+          💡 Podés seleccionar un plan arriba o dejarlo para que el asesor te oriente.
+        </div>
+      }
+
+      <div class="form-section__garantias">
+        <div class="form-section__garantia">
+          <span>🔒</span><span>Tus datos están protegidos</span>
+        </div>
+        <div class="form-section__garantia">
+          <span>📞</span><span>Sin llamadas no deseadas</span>
+        </div>
+        <div class="form-section__garantia">
+          <span>✅</span><span>Sin compromiso de contratación</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: formulario o éxito -->
+    <div class="form-section__right">
+      @if (!resultado()) {
+        <form class="cotizacion-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+          <!-- Nombre y Apellido -->
+          <div class="form-row">
+            <div class="form-field" [class.form-field--error]="hasError('nombre')">
+              <label class="form-field__label" for="nombre">Nombre *</label>
+              <input id="nombre" class="form-field__input" type="text"
+                formControlName="nombre" placeholder="Ej: María" autocomplete="given-name" />
+              @if (hasError('nombre')) {
+                <span class="form-field__error">Ingresá tu nombre</span>
+              }
+            </div>
+            <div class="form-field" [class.form-field--error]="hasError('apellido')">
+              <label class="form-field__label" for="apellido">Apellido *</label>
+              <input id="apellido" class="form-field__input" type="text"
+                formControlName="apellido" placeholder="Ej: García" autocomplete="family-name" />
+              @if (hasError('apellido')) {
+                <span class="form-field__error">Ingresá tu apellido</span>
+              }
+            </div>
+          </div>
+
+          <!-- Tipo y Número de documento -->
+          <div class="form-row">
+            <div class="form-field" [class.form-field--error]="hasError('tipoDocumento')">
+              <label class="form-field__label" for="tipoDocumento">Tipo de documento *</label>
+              <select id="tipoDocumento" class="form-field__input form-field__input--select"
+                formControlName="tipoDocumento">
+                <option value="" disabled>Seleccioná</option>
+                @for (tipo of tiposDocumento; track tipo) {
+                  <option [value]="tipo">{{ tipo }}</option>
+                }
+              </select>
+              @if (hasError('tipoDocumento')) {
+                <span class="form-field__error">Seleccioná el tipo de documento</span>
+              }
+            </div>
+            <div class="form-field" [class.form-field--error]="hasError('numeroDocumento')">
+              <label class="form-field__label" for="numeroDocumento">Número de documento *</label>
+              <input id="numeroDocumento" class="form-field__input" type="text"
+                formControlName="numeroDocumento" placeholder="Ej: 32456789"
+                inputmode="numeric" maxlength="11" />
+              @if (hasError('numeroDocumento')) {
+                <span class="form-field__error">Ingresá un número de documento válido</span>
+              }
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-field" [class.form-field--error]="hasError('email')">
+            <label class="form-field__label" for="email">Email *</label>
+            <input id="email" class="form-field__input" type="email"
+              formControlName="email" placeholder="tu@email.com" autocomplete="email" />
+            @if (hasError('email')) {
+              <span class="form-field__error">Ingresá un email válido</span>
+            }
+          </div>
+
+          <!-- Teléfono -->
+          <div class="form-field" [class.form-field--error]="hasError('telefono')">
+            <label class="form-field__label" for="telefono">Teléfono *</label>
+            <input id="telefono" class="form-field__input" type="tel"
+              formControlName="telefono" placeholder="Ej: +54 9 11 1234-5678" autocomplete="tel" />
+            @if (hasError('telefono')) {
+              <span class="form-field__error">Ingresá un teléfono válido (mínimo 8 dígitos)</span>
+            }
+          </div>
+
+          <!-- Fecha de nacimiento y Tipo de afiliación -->
+          <div class="form-row">
+            <div class="form-field" [class.form-field--error]="hasError('fechaNacimiento')">
+              <label class="form-field__label" for="fechaNacimiento">Fecha de nacimiento *</label>
+              <input id="fechaNacimiento" class="form-field__input" type="date"
+                formControlName="fechaNacimiento" [min]="fechaMinima" [max]="fechaMaxima" />
+              @if (hasError('fechaNacimiento')) {
+                <span class="form-field__error">
+                  @if (form.get('fechaNacimiento')?.errors?.['edadMinima']) {
+                    Debés tener al menos 18 años para cotizar
+                  } @else {
+                    Ingresá tu fecha de nacimiento
+                  }
+                </span>
+              }
+            </div>
+            <div class="form-field" [class.form-field--error]="hasError('tipoAfiliacion')">
+              <label class="form-field__label" for="tipoAfiliacion">Tipo de afiliación *</label>
+              <select id="tipoAfiliacion" class="form-field__input form-field__input--select"
+                formControlName="tipoAfiliacion">
+                <option value="" disabled>Seleccioná</option>
+                @for (tipo of tiposAfiliacion; track tipo.valor) {
+                  <option [value]="tipo.valor">{{ tipo.label }}</option>
+                }
+              </select>
+              @if (hasError('tipoAfiliacion')) {
+                <span class="form-field__error">Seleccioná el tipo de afiliación</span>
+              }
+            </div>
+          </div>
+
+          <!-- Cantidad de integrantes del grupo familiar -->
+          <div class="form-field" [class.form-field--error]="hasError('cantidadIntegrantesGrupoFamiliar')">
+            <label class="form-field__label" for="cantidadIntegrantes">
+              Cantidad de integrantes del grupo familiar *
+            </label>
+            <select id="cantidadIntegrantes" class="form-field__input form-field__input--select"
+              formControlName="cantidadIntegrantesGrupoFamiliar">
+              <option value="" disabled>Seleccioná</option>
+              @for (n of [1, 2, 3, 4, 5]; track n) {
+                <option [value]="n">{{ n }} {{ n === 1 ? 'integrante' : 'integrantes' }}</option>
+              }
+              <option value="6">6 o más integrantes</option>
+            </select>
+            @if (hasError('cantidadIntegrantesGrupoFamiliar')) {
+              <span class="form-field__error">Seleccioná la cantidad de integrantes</span>
+            }
+          </div>
+
+          <!-- Mensaje opcional -->
+          <div class="form-field">
+            <label class="form-field__label form-field__label--optional">
+              Mensaje o consulta
+              <span class="form-field__optional">(opcional)</span>
+            </label>
+            <textarea class="form-field__input form-field__input--textarea"
+              formControlName="mensaje" placeholder="¿Tenés alguna consulta puntual?" rows="3">
+            </textarea>
+          </div>
+
+          <!-- Botón de envío -->
+          <button type="submit" class="form-submit-btn"
+            [class.form-submit-btn--loading]="enviando()" [disabled]="enviando()">
+            @if (enviando()) {
+              <span class="form-submit-btn__spinner"></span>
+              Enviando solicitud...
+            } @else {
+              Solicitar cotización gratuita →
+            }
+          </button>
+
+          @if (errorEnvio()) {
+            <p class="form-error-msg">{{ errorEnvio() }}</p>
+          }
+        </form>
+
+      } @else {
+        <div class="form-success">
+          <div class="form-success__icono">✅</div>
+          <h3 class="form-success__title">¡Solicitud recibida!</h3>
+          <p class="form-success__mensaje">{{ resultado()!.mensaje }}</p>
+          <p class="form-success__numero">
+            N° de cotización: <strong>{{ resultado()!.numeroCotizacion }}</strong>
+          </p>
+          <button class="form-success__btn" (click)="resetForm()">
+            Realizar otra consulta
+          </button>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

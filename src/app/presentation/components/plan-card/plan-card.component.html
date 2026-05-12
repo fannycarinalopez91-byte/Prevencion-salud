@@ -1,0 +1,34 @@
+<article
+  class="plan-card"
+  [class.plan-card--destacado]="plan().destacado"
+  [class.plan-card--seleccionado]="seleccionado()"
+  [style.--accent]="plan().colorAccent"
+>
+  @if (plan().destacado) {
+    <div class="plan-card__badge">Más elegido</div>
+  }
+
+  <div class="plan-card__header">
+    <span class="plan-card__icono">{{ plan().icono }}</span>
+    <h3 class="plan-card__nombre">{{ plan().nombre }}</h3>
+    <p class="plan-card__descripcion">{{ plan().descripcion }}</p>
+  </div>
+
+  <ul class="plan-card__coberturas">
+    @for (cobertura of plan().coberturas; track cobertura) {
+      <li class="plan-card__cobertura-item">
+        <span class="plan-card__check">✓</span>
+        {{ cobertura }}
+      </li>
+    }
+  </ul>
+
+  <button
+    class="plan-card__btn"
+    [class.plan-card__btn--seleccionado]="seleccionado()"
+    (click)="onSeleccionar()"
+    [attr.aria-pressed]="seleccionado()"
+  >
+    {{ btnLabel() }}
+  </button>
+</article>

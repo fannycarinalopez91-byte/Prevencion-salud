@@ -1,0 +1,23 @@
+<section class="beneficios" id="beneficios">
+  <div class="beneficios__container">
+    <div class="beneficios__header">
+      <span class="beneficios__eyebrow">¿Por qué elegirnos?</span>
+      <h2 class="beneficios__title">Más de 60 años cuidando tu salud</h2>
+    </div>
+
+    <div class="beneficios__grid">
+      @for (b of beneficios; track b.titulo) {
+        <div class="beneficio-card">
+          <div class="beneficio-card__icono">{{ b.icono }}</div>
+          <h3 class="beneficio-card__titulo">{{ b.titulo }}</h3>
+          <p class="beneficio-card__descripcion">{{ b.descripcion }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="beneficios__cta">
+      <p>¿Tenés dudas sobre qué plan elegir?</p>
+      <a href="#cotizar" class="beneficios__cta-btn">Hablar con un asesor</a>
+    </div>
+  </div>
+</section>

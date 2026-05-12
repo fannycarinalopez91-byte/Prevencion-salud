@@ -1,0 +1,11 @@
+<app-header />
+<main>
+  <app-hero />
+  <app-planes-section (planSeleccionado)="onPlanSeleccionado($event)" />
+  <app-beneficios-section />
+  <app-cotizacion-form
+    [planSeleccionado]="planSeleccionado()"
+    (planQuitado)="onPlanQuitado()"
+  />
+</main>
+<app-footer />

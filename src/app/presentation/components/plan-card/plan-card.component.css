@@ -1,0 +1,120 @@
+.plan-card {
+  position: relative;
+  background: var(--color-white);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.plan-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 32px rgba(232, 0, 90, 0.12);
+  transform: translateY(-4px);
+}
+
+.plan-card--destacado {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 24px rgba(232, 0, 90, 0.15);
+}
+
+.plan-card--seleccionado {
+  border-color: var(--color-primary) !important;
+  box-shadow:
+    0 0 0 4px rgba(232, 0, 90, 0.12),
+    0 8px 32px rgba(232, 0, 90, 0.18) !important;
+}
+
+.plan-card__badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 18px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.plan-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.plan-card__icono {
+  font-size: 32px;
+}
+
+.plan-card__nombre {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.plan-card__descripcion {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.plan-card__coberturas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.plan-card__cobertura-item {
+  font-size: 14px;
+  color: var(--color-text);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+}
+
+.plan-card__check {
+  color: var(--color-primary);
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.plan-card__btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-primary);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.plan-card__btn:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.plan-card__btn--seleccionado {
+  background: var(--color-primary);
+  color: #fff;
+}

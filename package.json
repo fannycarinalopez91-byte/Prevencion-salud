@@ -1,0 +1,42 @@
+{
+  "name": "prevencion-salud",
+  "version": "1.0.0",
+  "description": "Landing de afiliación y cotización — Prevención Salud, Grupo Sancor Seguros",
+  "scripts": {
+    "ng": "node --no-warnings node_modules/@angular/cli/bin/ng.js",
+    "start": "node --no-warnings node_modules/@angular/cli/bin/ng.js serve",
+    "build": "node --no-warnings node_modules/@angular/cli/bin/ng.js build",
+    "watch": "node --no-warnings node_modules/@angular/cli/bin/ng.js build --watch --configuration development"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "19.2.5",
+    "@angular/common": "19.2.5",
+    "@angular/compiler": "19.2.5",
+    "@angular/core": "19.2.5",
+    "@angular/forms": "19.2.5",
+    "@angular/platform-browser": "19.2.5",
+    "@angular/platform-browser-dynamic": "19.2.5",
+    "@angular/router": "19.2.5",
+    "@emailjs/browser": "^4.4.1",
+    "rxjs": "7.8.2",
+    "tslib": "2.8.1",
+    "zone.js": "0.15.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "19.2.5",
+    "@angular/cli": "19.2.5",
+    "@angular/compiler-cli": "19.2.5",
+    "typescript": "5.6.3"
+  },
+  "overrides": {
+    "strip-ansi": "6.0.1",
+    "ansi-regex": "5.0.1",
+    "wrap-ansi": "7.0.0",
+    "yargs": "17.7.2"
+  },
+  "engines": {
+    "node": ">=18.19.0",
+    "npm": ">=9.0.0"
+  }
+}
