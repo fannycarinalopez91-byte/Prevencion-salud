@@ -12,6 +12,7 @@ import {
   signal,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
@@ -72,7 +73,7 @@ export class CotizacionFormComponent {
     numeroDocumento:               ['', [Validators.required, Validators.pattern(/^\d{6,11}$/)]],
     email:                         ['', [Validators.required, Validators.email]],
     telefono:                      ['', [Validators.required, Validators.pattern(/^\+?[\d\s\-]{8,15}$/)]],
-    fechaNacimiento: ['', [Validators.required, (ctrl) => {
+    fechaNacimiento: ['', [Validators.required, (ctrl: AbstractControl) => {
       if (!ctrl.value) return null;
       const nacimiento = new Date(ctrl.value + 'T00:00:00');
       const limite = new Date();

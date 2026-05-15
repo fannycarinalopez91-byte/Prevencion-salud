@@ -8,7 +8,7 @@ export interface Plan {
   readonly tipo: TipoPlan;
   readonly nombre: string;
   readonly descripcion: string;
-  readonly precioMensual: number;
+  readonly precioMensual?: number;
   readonly coberturas: readonly string[];
   readonly beneficios: readonly string[];
   readonly colorAccent: string;
