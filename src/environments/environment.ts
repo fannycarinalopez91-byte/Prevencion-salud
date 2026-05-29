@@ -18,8 +18,8 @@ export const environment = {
   production: false,
 
   emailJs: {
-    serviceId: 'service_joeliq7',       // Ej: 'service_abc123'
-    templateId: 'template_yvovtnw',     // Ej: 'template_xyz789'
-    publicKey: 'X9PDuiUZoj-3n0Q5B',       // Ej: 'abcDEF1234567890'
+    serviceId: 'service_a4jkj5j', 
+    templateId: 'template_5t99zpe',  
+    publicKey: 'FdvJeVatTqnK9Vh3R', 
   },
 };

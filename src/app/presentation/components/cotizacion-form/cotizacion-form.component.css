@@ -30,6 +30,12 @@
   top: 84px;
 }
 
+@media (max-width: 768px) {
+  .form-section__left {
+    position: static;
+  }
+}
+
 .form-section__eyebrow {
   display: inline-block;
   font-size: 11px;

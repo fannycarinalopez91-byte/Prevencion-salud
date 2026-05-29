@@ -8,8 +8,8 @@ export const environment = {
   production: true,
 
   emailJs: {
-    serviceId: 'TU_SERVICE_ID_PROD',
-    templateId: 'TU_TEMPLATE_ID_PROD',
-    publicKey: 'TU_PUBLIC_KEY_PROD',
+    serviceId: 'service_a4jkj5j', 
+    templateId: 'template_5t99zpe',  
+    publicKey: 'FdvJeVatTqnK9Vh3R', 
   },
 };
